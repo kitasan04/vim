@@ -109,6 +109,14 @@ nnoremap <silent> fzf :Files<CR>
 nnoremap <silent> ls :Buffers<CR>
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
 
+"vim-fugitive
+nnoremap <leader>ga :Git add %:p<CR><CR>
+nnoremap <leader>gc :Git commit<CR><CR>
+nnoremap <leader>gs :Git<CR>
+nnoremap <leader>gp :Git push<CR>
+nnoremap <leader>gd :Gdiffsplit<CR>
+nnoremap <leader>gl :Gclog<CR>
+nnoremap <leader>gb :Git blame<CR>
 
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -132,6 +140,8 @@ Plugin 'ryanoasis/vim-devicons'
 Plugin 'reireias/vim-cheatsheet'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 
 call vundle#end()
 filetype plugin indent on
