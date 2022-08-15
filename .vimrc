@@ -5,9 +5,12 @@ set tabstop=4
 set shiftwidth=4
 set clipboard=unnamed,unnameplus
 set belloff=all
+set hlsearch!
+nnoremap <F3> :set hlsearch!<CR>
 " xで削除した時はヤンクしない
 vnoremap x "_x
 nnoremap x "_x
+
 
 set nocompatible
 
@@ -92,6 +95,7 @@ endfunction
 inoremap <silent><expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
 inoremap <silent><expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
 inoremap <silent><expr> <C-h> coc#pum#visible() ? coc#pum#cancel() : "\<C-h>"
+inoremap <silent><expr> <C-l> coc#pum#visible() ? coc#pum#confirm() : "\<C-l>"
 inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1): "\<Tab>"
 inoremap <silent><expr> <S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<S-TAB>"
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -102,13 +106,13 @@ nnoremap <silent> ls :Buffers<CR>
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
 
 "vim-fugitive
-nnoremap <leader>ga :Git add %:p<CR><CR>
-nnoremap <leader>gc :Git commit<CR><CR>
-nnoremap <leader>gs :Git<CR>
-nnoremap <leader>gp :Git push<CR>
-nnoremap <leader>gd :Gdiffsplit<CR>
-nnoremap <leader>gl :Gclog<CR>
-nnoremap <leader>gb :Git blame<CR>
+nnoremap <silent><space>ga :Git add %:p<CR><CR>
+nnoremap <silent><space>gc :Git commit<CR><CR>
+nnoremap <silent><space>gs :Git<CR>
+nnoremap <silent><space>gp :Git push<CR>
+nnoremap <silent><space>gd :Gdiffsplit<CR>
+nnoremap <silent><space>gl :Gclog<CR>
+nnoremap <silent><space>gb :Git blame<CR>
 
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
