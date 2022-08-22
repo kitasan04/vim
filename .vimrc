@@ -35,7 +35,7 @@ set background=dark
 nnoremap <C-n> :NERDTreeToggle<CR>
 
 let g:ale_sign_column_always = 1
-let g:ale_sign_error = '❌'
+let g:ale_sign_error = 'E>'
 let g:ale_sign_warning = '⚠'
 
 nnoremap <silent> bn :<C-u>:bnext<CR>
@@ -76,6 +76,7 @@ nnoremap sv :<C-u>vs<CR><C-w>l
 
 let g:airline_theme = 'wombat'               " テーマの指定
 let g:airline#extensions#tabline#enabled = 1 " タブラインを表示
+let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline_powerline_fonts = 1            " Powerline Fontsを利用
 
 let g:cheatsheet#cheat_file = '~/.cheatsheet.md'
@@ -91,14 +92,12 @@ function! s:check_back_space() abort
 	return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
-" autocompletion
-inoremap <silent><expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
-inoremap <silent><expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
-inoremap <silent><expr> <C-h> coc#pum#visible() ? coc#pum#cancel() : "\<C-h>"
-inoremap <silent><expr> <C-l> coc#pum#visible() ? coc#pum#confirm() : "\<C-l>"
-inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1): "\<Tab>"
-inoremap <silent><expr> <S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<S-TAB>"
-inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <C-j>   pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+inoremap <expr> <C-y> pumvisible() ? asyncomplete#close_popup() : "\<C-y>"
+inoremap <expr> <CR> pumvisible() ? asyncomplete#close_popup() . "\<C-o>u" : "\<CR>"
 
 " fzf
 nnoremap <silent> fzf :Files<CR>
@@ -123,7 +122,6 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'preservim/nerdtree'
 Plugin 'machakann/vim-sandwich'
-Plugin 'neoclide/coc.nvim'
 Plugin 'gosukiwi/vim-atom-dark'
 Plugin 'cohama/lexima.vim'
 Plugin 'alvan/vim-closetag'
@@ -138,6 +136,10 @@ Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'prabirshrestha/vim-lsp'
+Plugin 'mattn/vim-lsp-settings'
+Plugin 'prabirshrestha/asyncomplete.vim'
+Plugin 'prabirshrestha/asyncomplete-lsp.vim'
 
 call vundle#end()
 filetype plugin indent on
