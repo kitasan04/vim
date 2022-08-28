@@ -3,9 +3,10 @@ set cursorline
 set laststatus=2
 set tabstop=4
 set shiftwidth=4
-set clipboard=unnamed,unnameplus
+set clipboard=unnamedplus
 set belloff=all
 set hlsearch!
+set autochdir
 nnoremap <F3> :set hlsearch!<CR>
 " xで削除した時はヤンクしない
 vnoremap x "_x
